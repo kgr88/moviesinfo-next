@@ -25,8 +25,14 @@ const config: Config = {
         '1/3': '33vw',
       },
       colors: {
+        'surface': '#141218',
         'surface1': '#25232A',
         'surface2': '#2B2831',
+        'on-surface': '#E6E1E5',
+        'surface-container-high': '#2B2930',
+        'secondary-container': '#4A4458',
+        'on-secondary-container': '#E8DEF8',
+        'secondary-container-hover': '#928f9B',
       },
       boxShadow: {
         'outer': '0px 4px 17px 1px rgba(0, 0, 0, .25)',
