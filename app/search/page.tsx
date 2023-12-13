@@ -17,6 +17,7 @@ async function getData(query: string) {
 export default async function Results(props: any) {
   const searchParams = props.searchParams;
   const data = await getData(searchParams.query);
+  console.log(typeof data);
   return (
     <div className='flex flex-wrap'>
       {data['results'].map((movie: any) => {

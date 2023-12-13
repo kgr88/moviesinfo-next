@@ -4,6 +4,8 @@ import Description from '../../components/details/description';
 import Cast from '../../components/details/cast';
 import Trailer from '../../components/details/trailer';
 
+
+
 const options = {
   method: 'GET',
   headers: {
@@ -51,10 +53,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   const credits = await getCredits(params.id);
   const images = await getImages(params.id);
   const videos = await getVideos(params.id);
-  const trailerUrl = videos.results.filter(({ type }) => type === 'Trailer')[0]
-    .key;
-
-  //const directors = director.map(director => director.name).join(', ');
+  const trailerUrl = videos.results.filter(({ type }) => type === 'Trailer')[0]?.key;
   return (
     <>
       <Backdrop movieData={movieData} type={'movie'} credits={credits} />
@@ -62,7 +61,7 @@ export default async function Page({ params }: { params: { id: string } }) {
       <div className='mx-auto max-w-1366 justify-center'>
         <Description movieData={movieData} />
         <Images images={images} />
-        <Trailer trailerUrl={trailerUrl} />
+       { trailerUrl ? <Trailer trailerUrl={trailerUrl} /> : null}
         <Cast credits={credits} />
 
         

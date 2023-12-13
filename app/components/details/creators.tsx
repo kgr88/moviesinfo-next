@@ -14,7 +14,7 @@ export default function Creators(props: { credits: any; releaseDate: string }) {
       {writer.map((writer) => writer.name).join(", ")} <br />
       <a className="font-bold">Release Date: </a> {props.releaseDate} <br />
       <a className="font-bold">Music: </a>
-      {composer[0].name}
+      {composer[0]?.name}
     </div>
   )
 } 

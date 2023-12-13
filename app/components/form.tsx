@@ -1,6 +1,158 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import SearchInput from './form-input';
+import getTrending from '../utils/getTrending';
+import orderBy from 'lodash/orderBy';
+
+const movieGenres = {
+  "genres": [
+    {
+      "id": 28,
+      "name": "Action"
+    },
+    {
+      "id": 12,
+      "name": "Adventure"
+    },
+    {
+      "id": 16,
+      "name": "Animation"
+    },
+    {
+      "id": 35,
+      "name": "Comedy"
+    },
+    {
+      "id": 80,
+      "name": "Crime"
+    },
+    {
+      "id": 99,
+      "name": "Documentary"
+    },
+    {
+      "id": 18,
+      "name": "Drama"
+    },
+    {
+      "id": 10751,
+      "name": "Family"
+    },
+    {
+      "id": 14,
+      "name": "Fantasy"
+    },
+    {
+      "id": 36,
+      "name": "History"
+    },
+    {
+      "id": 27,
+      "name": "Horror"
+    },
+    {
+      "id": 10402,
+      "name": "Music"
+    },
+    {
+      "id": 9648,
+      "name": "Mystery"
+    },
+    {
+      "id": 10749,
+      "name": "Romance"
+    },
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 10770,
+      "name": "TV Movie"
+    },
+    {
+      "id": 53,
+      "name": "Thriller"
+    },
+    {
+      "id": 10752,
+      "name": "War"
+    },
+    {
+      "id": 37,
+      "name": "Western"
+    }
+  ]
+}
+
+const tvGenres = {
+    "genres": [
+      {
+        "id": 10759,
+        "name": "Action & Adventure"
+      },
+      {
+        "id": 16,
+        "name": "Animation"
+      },
+      {
+        "id": 35,
+        "name": "Comedy"
+      },
+      {
+        "id": 80,
+        "name": "Crime"
+      },
+      {
+        "id": 99,
+        "name": "Documentary"
+      },
+      {
+        "id": 18,
+        "name": "Drama"
+      },
+      {
+        "id": 10751,
+        "name": "Family"
+      },
+      {
+        "id": 10762,
+        "name": "Kids"
+      },
+      {
+        "id": 9648,
+        "name": "Mystery"
+      },
+      {
+        "id": 10763,
+        "name": "News"
+      },
+      {
+        "id": 10764,
+        "name": "Reality"
+      },
+      {
+        "id": 10765,
+        "name": "Sci-Fi & Fantasy"
+      },
+      {
+        "id": 10766,
+        "name": "Soap"
+      },
+      {
+        "id": 10767,
+        "name": "Talk"
+      },
+      {
+        "id": 10768,
+        "name": "War & Politics"
+      },
+      {
+        "id": 37,
+        "name": "Western"
+      }
+    ]
+  }
 
 async function create(formData: FormData) {
   'use server';
@@ -9,22 +161,42 @@ async function create(formData: FormData) {
   redirect(`/search/?query=${query}`);
 }
 
-export default function Form() {
+function mapGenres(genreIds: number[], genresMap:any){
+  if(genreIds.length === 0){
+    return null;
+  }
+
+  return genreIds.map((id: number) => {
+    const genre = genresMap.find((item: any) => item.id === id);
+    return genre ? genre.name: null;
+  })
+}
+
+async function formatTrending(){
+  const data = await getTrending();
+  const trending = data.results;
+  const sortedTrending = orderBy(trending, 'popularity', 'desc');
+  const names = sortedTrending.map((item: any) => ({
+    name: item.title || item.name,
+    description: item.overview || null,
+    type: item.media_type,
+    genres: item.media_type === 'movie' ? mapGenres(item.genre_ids, movieGenres.genres):
+    item.media_type === 'tv' ? mapGenres(item.genre_ids, tvGenres.genres):
+    null, 
+  }));
+  //console.log(names);
+  return names;
+}
+
+export default async function Form() {
+  const trendingWeekly = await formatTrending();
   return (
     <div className='h-30 w-full bg-[#202124]'>
       <form
         className='border-none flex w-full justify-center px-8 py-4 shadow-outer'
         action={create}
-      >
-        {/*<input
-          className='bg-surface-container-high w-1/5 appearance-none rounded-full px-3 py-2 leading-tight text-gray-700 shadow'
-          type='search'
-          id='query'
-          name='query'
-          placeholder="Search..."
-  />*/}
-        
-        <SearchInput/>
+      >    
+        <SearchInput searchList={trendingWeekly}/> 
         <button
           className=' focus:shadow-outline grid content-center rounded-full px-3 py-3 font-bold -ml-12 z-10 focus:outline-none'
           type='submit'
