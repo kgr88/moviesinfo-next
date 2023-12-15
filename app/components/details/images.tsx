@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import { useEffect } from 'react';
-export default function Images({ images }: any) {
+export default function Images(props: { images:any }) {
   const scrollImages = (direction: string, slidesContainer: any) => {
     const slideWidth = slidesContainer.querySelector('.slide').clientWidth;
     const computedStyles = window.getComputedStyle(slidesContainer);
@@ -30,7 +30,7 @@ export default function Images({ images }: any) {
       );
     }
   }, []);
-  if (images.length < 3) return '';
+  if (props.images.backdrops.length < 3) return '';
   else
     return (
       <div className='relative mt-4 sm:m-4'>
@@ -71,7 +71,7 @@ export default function Images({ images }: any) {
           </button>
         </div>
         <div className='bg-surface1 slides-container shadow-outer flex snap-x snap-mandatory overflow-hidden overflow-x-auto scroll-smooth py-6 md:py-8 sm:rounded-2xl md:space-x-2'>
-          {images.backdrops.slice(0, 5).map((image: any) => (
+          {props.images.backdrops.slice(0, 5).map((image: any) => (
             <div
               key={image.file_path}
               className='slide flex-none basis-full md:basis-1/3 md:rounded-3xl'

@@ -198,7 +198,7 @@ export default async function Form() {
       >    
         <SearchInput searchList={trendingWeekly}/> 
         <button
-          className=' focus:shadow-outline grid content-center rounded-full px-3 py-3 font-bold -ml-12 z-10 focus:outline-none'
+          className=' focus:shadow-outline grid content-center rounded-full px-3 py-3 font-bold -ml-12 z-10 focus:outline-none z-[100]'
           type='submit'
           value='Submit'
         >
