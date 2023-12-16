@@ -5,7 +5,7 @@ export default function Trailer(props: {trailerUrl: string}){
             src={`https://www.youtube.com/embed/${props.trailerUrl}`}
             allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
             allowFullScreen
-            className='absolute top-0 left-0 h-full w-full rounded-2xl'
+            className='absolute top-0 left-0 h-full w-full rounded-2xl shadow-outer'
           ></iframe>
         </div>
     )

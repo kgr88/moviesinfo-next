@@ -1,5 +1,5 @@
 import Image from 'next/image';
-async function getProviders(id: string) {
+async function getProviders(id: string, type:string) {
   const options = {
     method: 'GET',
     headers: {
@@ -8,14 +8,14 @@ async function getProviders(id: string) {
     },
   };
   const res = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}/watch/providers`,
+    `https://api.themoviedb.org/3/${type}/${id}/watch/providers`,
     options
   );
   return res.json();
 }
 
-export default async function Providers(props: { movieData: any }) {
-  const providers = await getProviders(props.movieData['id']);
+export default async function Providers(props: { movieData: any, mediaType: string }) {
+  const providers = await getProviders(props.movieData['id'], props.mediaType);
 
   if (providers.results.PL?.flatrate === undefined) {
     return <p>Not available right now</p>;

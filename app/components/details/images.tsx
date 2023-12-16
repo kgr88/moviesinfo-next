@@ -1,16 +1,16 @@
 'use client';
 import Image from 'next/image';
 import { useEffect } from 'react';
-export default function Images(props: { images:any }) {
+export default function Images(props: { images: any }) {
   const scrollImages = (direction: string, slidesContainer: any) => {
     const slideWidth = slidesContainer.querySelector('.slide').clientWidth;
     const computedStyles = window.getComputedStyle(slidesContainer);
     const padding = parseInt(computedStyles.paddingTop, 10) - 24;
     console.log(padding);
     if (direction === 'next') {
-      slidesContainer.scrollLeft += (slideWidth + padding);
+      slidesContainer.scrollLeft += slideWidth + padding;
     } else if (direction === 'prev') {
-      slidesContainer.scrollLeft -= (slideWidth + padding);
+      slidesContainer.scrollLeft -= slideWidth + padding;
     }
   };
 
@@ -23,13 +23,13 @@ export default function Images(props: { images:any }) {
         scrollImages('prev', slidesContainer)
       );
     }
-
     if (nextButton) {
       nextButton.addEventListener('click', () =>
         scrollImages('next', slidesContainer)
       );
     }
   }, []);
+
   if (props.images.backdrops.length < 3) return '';
   else
     return (
@@ -70,7 +70,7 @@ export default function Images(props: { images:any }) {
             </svg>
           </button>
         </div>
-        <div className='bg-surface1 slides-container shadow-outer flex snap-x snap-mandatory overflow-hidden overflow-x-auto scroll-smooth py-6 md:py-8 sm:rounded-2xl md:space-x-2'>
+        <div className='slides-container flex snap-x snap-mandatory overflow-hidden overflow-x-auto scroll-smooth bg-surface1 py-6 shadow-outer sm:rounded-2xl md:space-x-2 md:py-8'>
           {props.images.backdrops.slice(0, 5).map((image: any) => (
             <div
               key={image.file_path}

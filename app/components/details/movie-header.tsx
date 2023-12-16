@@ -1,20 +1,5 @@
 import Image from 'next/image';
 import Creators from './creators';
-let parseText = function (text: string, limit: number) {
-  if (text.length > limit) {
-    for (let i = limit; i > 0; i--) {
-      if (
-        text.charAt(i) === ' ' &&
-        (text.charAt(i - 1) != ',' ||
-          text.charAt(i - 1) != '.' ||
-          text.charAt(i - 1) != ';')
-      ) {
-        return text.substring(0, i) + '...';
-      }
-    }
-    return text.substring(0, limit) + '...';
-  } else return text;
-};
 
 export default function MovieHeader(props: {
   movieData: any;
@@ -39,10 +24,10 @@ export default function MovieHeader(props: {
               {props.type.toUpperCase()}
             </p>
             <p className='text-xl/5 md:text-6xl  font-bold'>
-              {parseText(props.movieData.title, 100)}
+              {props.movieData.title || props.movieData.original_name}
             </p>
             <p className=' md:text-2xl font-light'>
-              {hours}h {minutes}m
+              {props.type == 'movie' ? `${hours}h ${minutes}m`: props.movieData.status}
             </p>
           </div>
 

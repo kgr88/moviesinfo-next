@@ -6,7 +6,7 @@ export default function Backdrop(props: {
 }) {
   return (
     <div
-      className='flex h-80 bg-cover bg-center bg-no-repeat p-2 md:p-4 bg-blend-darken sm:h-96 md:h-600'
+      className='flex h-80 bg-cover bg-center bg-no-repeat p-2 bg-blend-darken sm:h-96 md:h-600 md:p-4'
       style={{
         backgroundImage: `linear-gradient(
             rgba(0, 0, 0, 0.7), 
@@ -14,7 +14,11 @@ export default function Backdrop(props: {
           ),url("https://image.tmdb.org/t/p/original${props.movieData.backdrop_path}")`,
       }}
     >
-      <MovieHeader movieData={props.movieData} type={'movie'} credits={props.credits} />
+      <MovieHeader
+        movieData={props.movieData}
+        type={props.type}
+        credits={props.credits}
+      />
     </div>
   );
 }

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Autosuggest from 'react-autosuggest';
 import Fuse from 'fuse.js';
 
@@ -31,7 +31,6 @@ export default function SearchInput(props: { searchList: any }) {
       return match.item.name;
     });
     setSuggestions(foundSuggestions);
-    console.log(foundSuggestions, suggestions.length);
   };
 
   // Function to render suggestions

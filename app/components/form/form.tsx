@@ -1,7 +1,7 @@
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import SearchInput from './form-input';
-import getTrending from '../utils/getTrending';
+import getTrending from '../../utils/getTrending';
 import orderBy from 'lodash/orderBy';
 
 const movieGenres = {
@@ -195,6 +195,7 @@ export default async function Form() {
       <form
         className='border-none flex w-full justify-center px-8 py-4 shadow-outer'
         action={create}
+        id='search'
       >    
         <SearchInput searchList={trendingWeekly}/> 
         <button
