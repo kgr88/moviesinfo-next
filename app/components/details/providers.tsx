@@ -16,7 +16,6 @@ async function getProviders(id: string, type:string) {
 
 export default async function Providers(props: { movieData: any, mediaType: string }) {
   const providers = await getProviders(props.movieData['id'], props.mediaType);
-
   if (providers.results.PL?.flatrate === undefined) {
     return <p>Not available right now</p>;
   } else {

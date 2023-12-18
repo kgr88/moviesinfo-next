@@ -14,22 +14,30 @@ const options = {
   },
 };
 async function getMovieData(query: string) {
-  const res = await fetch(`https://api.themoviedb.org/3/tv/${query}?append_to_response=videos%2Cimages%2Ccredits`, options)
+  const res = await fetch(
+    `https://api.themoviedb.org/3/tv/${query}?append_to_response=videos%2Cimages%2Ccredits`,
+    options
+  );
   return res.json();
 }
 
 export default async function Page({ params }: { params: { id: string } }) {
   const movieData = await getMovieData(params.id);
   //console.log(movieData, 'test')
-  const trailerUrl = movieData.videos.results.filter(({ type }) => type === 'Trailer')[0]
-    ?.key;
+  const trailerUrl = movieData.videos.results.filter(
+    ({ type }) => type === 'Trailer'
+  )[0]?.key;
   return (
     <>
-      <Backdrop movieData={movieData} type={'tv series'} credits={movieData.credits} />
+      <Backdrop
+        movieData={movieData}
+        type={'tv series'}
+        credits={movieData.credits}
+      />
 
       <div className='mx-auto max-w-1366 justify-center'>
         <Description movieData={movieData} mediaType='tv' />
-        <Seasons/>
+        <Seasons seasonData={movieData.seasons} />
         <Images images={movieData.images} />
         {trailerUrl ? <Trailer trailerUrl={trailerUrl} /> : null}
         <Cast credits={movieData.credits} />

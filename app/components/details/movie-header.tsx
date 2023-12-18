@@ -11,7 +11,7 @@ export default function MovieHeader(props: {
   return (
     <>
       <div className='mx-auto mt-auto flex w-full max-w-1366 gap-x-2'>
-        <div className='flex-initial self-center rounded-2xl md:self-auto shadow-xl'>
+        <div className='flex-initial self-center rounded-2xl shadow-xl md:self-auto'>
           <img
             src={`https://image.tmdb.org/t/p/w500${props.movieData.poster_path}`}
             alt={props.movieData.id}
@@ -23,11 +23,13 @@ export default function MovieHeader(props: {
             <p className=' font-black text-[#EBE9A0] md:text-2xl'>
               {props.type.toUpperCase()}
             </p>
-            <p className='text-xl/5 md:text-6xl  font-bold'>
-              {props.movieData.title || props.movieData.original_name}
+            <p className='text-xl/5 font-bold  md:text-6xl'>
+              {props.movieData.title || props.movieData.name}
             </p>
-            <p className=' md:text-2xl font-light'>
-              {props.type == 'movie' ? `${hours}h ${minutes}m`: props.movieData.status}
+            <p className=' font-light md:text-2xl'>
+              {props.type == 'movie'
+                ? `${hours}h ${minutes}m`
+                : props.movieData.status}
             </p>
           </div>
 
