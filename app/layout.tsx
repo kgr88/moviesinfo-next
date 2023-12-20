@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       
-      <body className={roboto.className}>
+      <body className={roboto.className+' pb-8'}>
         <Form />
         {children}
       </body>

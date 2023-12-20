@@ -4,7 +4,9 @@ import Description from '../../components/details/description';
 import Cast from '../../components/details/cast';
 import Trailer from '../../components/details/trailer';
 import Seasons from '../../components/details/seasons';
+import Test from '../../components/details/test';
 import { revalidatePath } from 'next/cache';
+
 
 const options = {
   method: 'GET',
@@ -41,6 +43,7 @@ export default async function Page({ params }: { params: { id: string } }) {
         <Images images={movieData.images} />
         {trailerUrl ? <Trailer trailerUrl={trailerUrl} /> : null}
         <Cast credits={movieData.credits} />
+        
       </div>
     </>
   );
