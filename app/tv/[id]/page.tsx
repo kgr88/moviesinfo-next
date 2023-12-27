@@ -4,7 +4,6 @@ import Description from '../../components/details/description';
 import Cast from '../../components/details/cast';
 import Trailer from '../../components/details/trailer';
 import Seasons from '../../components/details/seasons';
-import Test from '../../components/details/test';
 import { revalidatePath } from 'next/cache';
 
 
@@ -25,7 +24,6 @@ async function getMovieData(query: string) {
 
 export default async function Page({ params }: { params: { id: string } }) {
   const movieData = await getMovieData(params.id);
-  //console.log(movieData, 'test')
   const trailerUrl = movieData.videos.results.filter(
     ({ type }) => type === 'Trailer'
   )[0]?.key;

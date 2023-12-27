@@ -24,13 +24,19 @@ body {
   background-color: var(--surface);
 }
 
-.slides-container {
+.slides-container, .moviesContainer {
 	-ms-overflow-style: none; /* Internet Explorer 10+ */
 	scrollbar-width: none; /* Firefox */
 }
 
-.slides-container::-webkit-scrollbar {
+.slides-container::-webkit-scrollbar, .moviesContainer::-webkit-scrollbar {
 	display: none; /* Safari and Chrome */
+}
+
+.trending-container{
+  scrollbar-width: thin;
+  scrollbar-color: rgba(136, 136, 136, 0.5) rgba(136, 136, 136, 0.05);
+  border-radius: 16px;
 }
 
 datalist {

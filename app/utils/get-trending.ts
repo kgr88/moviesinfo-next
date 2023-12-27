@@ -1,6 +1,5 @@
-'use server'
-export default async function getTrending() {
-  //console.log(query);
+'use server';
+export default async function getTrending(type: string) {
   const options = {
     method: 'GET',
     headers: {
@@ -9,7 +8,7 @@ export default async function getTrending() {
     },
   };
   const res = await fetch(
-    `https://api.themoviedb.org/3/trending/all/week?language=en-US&page1`,
+    `https://api.themoviedb.org/3/trending/${type}/week?language=en-US&page1`,
     options
   );
   return res.json();

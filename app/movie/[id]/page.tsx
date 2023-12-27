@@ -47,7 +47,6 @@ async function getVideos(query: string) {
 
 export default async function Page({ params }: { params: { id: string } }) {
   const movieData = await getMovieData(params.id);
-  console.log(movieData);
   const trailerUrl = movieData.videos.results.filter(
     ({ type }) => type === 'Trailer'
   )[0]?.key;

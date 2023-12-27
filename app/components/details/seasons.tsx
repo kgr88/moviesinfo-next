@@ -4,7 +4,7 @@ import { useCollapse } from 'react-collapsed';
 
 function renderSeasons(seasonData: any) {
   return (
-    <div className='grid gap-4 mt-4 md:grid-cols-2'>
+    <div className='mt-4 grid gap-4 md:grid-cols-2'>
       {seasonData.map((season: any, index: number) => {
         return (
           <div
@@ -59,10 +59,13 @@ export default function Seasons(props: { seasonData: any }) {
       </section>
       <button
         {...getToggleProps()}
-        className={'mx-auto mt-4 block rounded-full bg-surface2 px-4 py-3 shadow-outer2 ' + (props.seasonData.length <= 2 ? 'hidden' : null)}
+        className={
+          'mx-auto mt-4 block rounded-full bg-surface2 px-4 py-3 shadow-outer2 ' +
+          (props.seasonData.length <= 2 ? 'hidden' : null)
+        }
       >
         {isExpanded ? 'Show Less' : 'Show More'}
-      </button> 
+      </button>
     </div>
   );
 }

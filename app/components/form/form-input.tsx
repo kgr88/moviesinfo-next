@@ -70,7 +70,7 @@ export default function SearchInput(props: { searchList: any }) {
       renderSuggestion={renderSuggestion}
       inputProps={inputProps}
       theme={{
-        container: 'relative w-96 z-50',
+        container: 'relative w-full md:w-96 z-50',
         suggestionsContainer:
           'absolute bg-[#303134] text-on-surface w-full rounded-b-3xl overflow-hidden',
         suggestionsList: 'overflow-auto pb-2',
