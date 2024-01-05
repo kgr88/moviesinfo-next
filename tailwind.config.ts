@@ -25,7 +25,7 @@ const config: Config = {
         '1/3': '33vw',
       },
       colors: {
-        'surface': '#141218',
+        'surface': '#1f1f1f',
         'surface1': '#25232A',
         'surface2': '#2B2831',
         'on-surface': '#E6E1E5',

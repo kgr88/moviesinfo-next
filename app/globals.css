@@ -2,11 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* #1C1B1F */
 :root {
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --surface: #1C1B1F;
+  --surface: #1f1f1f;
   --on-surface: #E6E1E5;
   --surface1: #25232A;
 }
@@ -37,6 +38,19 @@ body {
   scrollbar-width: thin;
   scrollbar-color: rgba(136, 136, 136, 0.5) rgba(136, 136, 136, 0.05);
   border-radius: 16px;
+}
+
+.color-fill{
+  background-color: var(--surface1);
+  background-image: linear-gradient(var(--surface), var(--surface));
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: 0% 0%;
+  transition: background-size .3s, color .3s;
+}
+
+.color-fill:hover {
+  background-size: 100% 100%;
 }
 
 datalist {

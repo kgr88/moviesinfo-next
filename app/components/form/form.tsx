@@ -3,7 +3,6 @@ import { redirect } from 'next/navigation';
 import SearchInput from './form-input';
 import getTrending from '../../utils/get-trending';
 import orderBy from 'lodash/orderBy';
-import Link from 'next/link';
 import mapGenres from '@/app/utils/map-genres';
 
 
@@ -32,8 +31,7 @@ async function formatTrending(){
 export default async function Form() {
   const trendingWeekly = await formatTrending();
   return (
-    <div className='h-30 w-full bg-[#202124] justfy-start flex'>
-      <Link href='/'> Home </Link>
+    <div className='h-30 w-full bg-surface justfy-start flex ml-20'>
       <form
         className='border-none flex w-full justify-center px-8 py-4 shadow-outer'
         action={create}
